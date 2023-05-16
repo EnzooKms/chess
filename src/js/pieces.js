@@ -6,6 +6,7 @@ export default class pieces {
     constructor() {
         this.turn = 'white'
         this.pieces = []
+        this.event = []
     }
 
     createData() {
@@ -65,7 +66,6 @@ export default class pieces {
 
         for (let i = 0; i < this.pieces.length; i++) {
             const el = this.pieces[i]
-            console.log(el);
             if (!el.piece) {
                 el.element.children[0].style.backgroundImage = ''
                 continue
@@ -81,9 +81,9 @@ export default class pieces {
         this.turn = this.turn === 'white' ? 'black' : 'white'
     }
 
-    removeEvents(cells, event, func) {
-        for (const el of cells) {
-            el.removeEventListener(event, func)
+    removeEvents(event, func) {
+        for (const el of this.event) {
+            el.element.removeEventListener(event, el.binder)
         }
     }
 
@@ -103,9 +103,11 @@ export default class pieces {
         console.log(piecesPlayer);
 
         for (const piece of piecesPlayer) {
-
-            piece.element.addEventListener('click', eventFunc.bind(null, piece.element, piece, states, turn)) /* click by current player */
-
+            piece.binder = eventFunc.bind(null, piece.element, piece, states, turn)
+            piece.element.addEventListener('click', piece.binder) /* click by current player */
+            this.event.push(piece)
+            // piece.element.removeEventListener('click', binder)
+            // this.removeEvents('click', eventFunc)
         }
 
     }

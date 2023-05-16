@@ -1,24 +1,30 @@
 import eventFunc from "./move"
 
-const cells = document.getElementById('game').querySelectorAll('.cells')
-
 export default function playMove(state, newPos) {
+
     const oldState = {
         element: state.element,
         x: state.x,
         y: state.y,
         piece: state.piece
     }
-    state.x = newPos.x
-    state.y = newPos.y
+    state.x = newPos.select.x
+    state.y = newPos.select.y
     state.moved = true
-    state.element = newPos.element
-    newPos.x = oldState.x
-    newPos.y = oldState.y
-    newPos.element = oldState.element
+    state.element = newPos.select.element
+    newPos.select.x = oldState.x
+    newPos.select.y = oldState.y
+    newPos.select.element = oldState.element
 
     game.drawData()
     game.clearDot()
 
-    game.removeEvents(cells, 'click', eventFunc)
+    game.removeEvents('click', state.binder)
+    game.removeEvents('click', newPos.select.binder)
+
+    for (const el of newPos.other) {
+        game.removeEvents('click', el.binder)
+    }
+
+    game.changeTurn()
 }
