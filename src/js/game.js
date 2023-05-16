@@ -6,6 +6,7 @@ board()
 window.game = new pieces()
 game.createData()
 game.drawData()
-game.calcMoveCanDo(game.pieces, game.turn)
+// game.changeTurn()
+game.calcMove(game.pieces, game.turn)
 
 console.log(game);

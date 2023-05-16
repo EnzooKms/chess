@@ -1,3 +1,5 @@
+import eventFunc from "./move"
+
 const cells = document.getElementById('game').querySelectorAll('.cells')
 
 export default class pieces {
@@ -49,14 +51,27 @@ export default class pieces {
 
     }
 
+    setter(oldState, newState) {
+
+        for (let i = 0; i < this.pieces.length; i++) {
+            if (this.pieces[i] === oldState) {
+                this.pieces[i] = newState
+            }
+        }
+
+    }
+
     drawData() {
 
         for (let i = 0; i < this.pieces.length; i++) {
             const el = this.pieces[i]
-            if (!el.piece) continue
+            console.log(el);
+            if (!el.piece) {
+                el.element.children[0].style.backgroundImage = ''
+                continue
+            }
 
-
-            cells[i].children[0].style.backgroundImage = `url(/theme/default/${el.piece}.png)`
+            el.element.children[0].style.backgroundImage = `url(/theme/default/${el.piece}.png)`
 
         }
 
@@ -66,11 +81,33 @@ export default class pieces {
         this.turn = this.turn === 'white' ? 'black' : 'white'
     }
 
-    calcMoveCanDo(state, turn) {
-        const piecesChecker /* les pieces du joueur enemis */ = state.filter(el => el.piece === `bishop_${turn}` || el.piece === `rook_${turn}` || el.piece === `queen_${turn}`)
-
-        const piecesTurn /* toutes les pieces du joueur actuelle */ = state.filter(el => el.piece /* if el.piece = null will return false*/ && el.piece.endsWith(`_${turn === 'white' ? 'black' : 'white'}`))
-
-        console.log(piecesChecker, piecesTurn);
+    removeEvents(cells, event, func) {
+        for (const el of cells) {
+            el.removeEventListener(event, func)
+        }
     }
+
+    clearDot() {
+
+        const clearDot = document.querySelectorAll('.dot')
+        for (const dot of clearDot) {
+            dot.parentNode.removeChild(dot)
+        }
+
+    }
+
+    calcMove(states, turn) {
+
+        const piecesPlayer = states.filter(el => el.piece /*if el.piece is null will return false */ && el.piece.endsWith(turn))
+
+        console.log(piecesPlayer);
+
+        for (const piece of piecesPlayer) {
+
+            piece.element.addEventListener('click', eventFunc.bind(null, piece.element, piece, states, turn)) /* click by current player */
+
+        }
+
+    }
+
 }
