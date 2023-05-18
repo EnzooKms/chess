@@ -6,7 +6,6 @@ export default class pieces {
     constructor() {
         this.turn = 'white'
         this.pieces = []
-        this.event = []
     }
 
     createData() {
@@ -81,10 +80,14 @@ export default class pieces {
         this.turn = this.turn === 'white' ? 'black' : 'white'
     }
 
-    removeEvents(event, func) {
-        for (const el of this.event) {
-            el.element.removeEventListener(event, el.binder)
+    removeEvents() {
+        const clone = document.getElementById('game').cloneNode(true)
+        document.getElementById('game').replaceWith(clone)
+        let i = 0
+        for (const piece of this.pieces) {
+            piece.element = clone.querySelectorAll('.cells')[piece.y * 8 + piece.x]
         }
+
     }
 
     clearDot() {
@@ -97,17 +100,12 @@ export default class pieces {
     }
 
     calcMove(states, turn) {
-
+        console.log('exe');
         const piecesPlayer = states.filter(el => el.piece /*if el.piece is null will return false */ && el.piece.endsWith(turn))
-
-        console.log(piecesPlayer);
 
         for (const piece of piecesPlayer) {
             piece.binder = eventFunc.bind(null, piece.element, piece, states, turn)
             piece.element.addEventListener('click', piece.binder) /* click by current player */
-            this.event.push(piece)
-            // piece.element.removeEventListener('click', binder)
-            // this.removeEvents('click', eventFunc)
         }
 
     }

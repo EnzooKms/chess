@@ -1,5 +1,3 @@
-import eventFunc from "./move"
-
 export default function playMove(state, newPos) {
 
     const oldState = {
@@ -19,12 +17,9 @@ export default function playMove(state, newPos) {
     game.drawData()
     game.clearDot()
 
-    game.removeEvents('click', state.binder)
-    game.removeEvents('click', newPos.select.binder)
-
-    for (const el of newPos.other) {
-        game.removeEvents('click', el.binder)
-    }
+    game.removeEvents()
 
     game.changeTurn()
+
+    game.calcMove(game.pieces, game.turn)
 }
