@@ -11,12 +11,12 @@ export default function pawn(piece, states, turn, dot) {
     const leftUp = states.find(el => el.x === piece.x - 1 && el.y === piece.y - add)
     const rightUp = states.find(el => el.x === piece.x + 1 && el.y === piece.y - add)
 
-    if (leftUp.piece && leftUp.piece.endsWith(enemie)) {
+    if (leftUp && leftUp.piece && leftUp.piece.endsWith(enemie)) {
         leftUp.element.innerHTML += dot
         leftUp.element.addEventListener('click', playMove.bind(null, piece, leftUp))
     }
 
-    if (rightUp.piece && rightUp.piece.endsWith(enemie)) {
+    if (rightUp && rightUp.piece && rightUp.piece.endsWith(enemie)) {
         rightUp.element.innerHTML += dot
         rightUp.element.addEventListener('click', playMove.bind(null, piece, rightUp))
     }
