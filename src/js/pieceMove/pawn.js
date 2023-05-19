@@ -30,7 +30,7 @@ export default function pawn(piece, states, turn, dot) {
         return
     }
 
-    if (!piece.moved) {
+    if (!piece.moved && !move2.piece) {
         move2.element.innerHTML += dot
 
 
