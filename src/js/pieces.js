@@ -104,8 +104,7 @@ export default class pieces {
         const piecesPlayer = states.filter(el => el.piece /*if el.piece is null will return false */ && el.piece.endsWith(turn))
 
         for (const piece of piecesPlayer) {
-            piece.binder = eventFunc.bind(null, piece.element, piece, states, turn)
-            piece.element.addEventListener('click', piece.binder) /* click by current player */
+            piece.element.addEventListener('click', eventFunc.bind(null, piece.element, piece, states, turn)) /* click by current player */
         }
 
     }
