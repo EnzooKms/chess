@@ -1,4 +1,4 @@
-import { pawn, king, queen, rook } from "./pieceMove/import"
+import { pawn, king, queen, rook, bishop } from "./pieceMove/import"
 
 export default function eventFunc(e, piece, states, turn) {
 
@@ -21,6 +21,10 @@ export default function eventFunc(e, piece, states, turn) {
 
     if (piece.piece.startsWith('rook')) {
         rook(piece, states, turn, dot)
+    }
+
+    if (piece.piece.startsWith('bishop')) {
+        bishop(piece, states, turn, dot)
     }
 
 }
