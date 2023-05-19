@@ -1,4 +1,4 @@
-import { pawn, king } from "./pieceMove/import"
+import { pawn, king, queen } from "./pieceMove/import"
 
 export default function eventFunc(e, piece, states, turn) {
 
@@ -13,6 +13,10 @@ export default function eventFunc(e, piece, states, turn) {
 
     if (piece.piece.startsWith('king')) {
         king(piece, states, turn, dot)
+    }
+
+    if (piece.piece.startsWith('queen')) {
+        queen(piece, states, turn, dot)
     }
 
 }
