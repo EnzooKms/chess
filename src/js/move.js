@@ -1,5 +1,4 @@
-import playMove from "./playMove"
-import { pawn } from "./pieceMove/import"
+import { pawn, king } from "./pieceMove/import"
 
 export default function eventFunc(e, piece, states, turn) {
 
@@ -10,6 +9,10 @@ export default function eventFunc(e, piece, states, turn) {
 
     if (piece.piece.startsWith('pawn')) {
         pawn(piece, states, turn, dot)
+    }
+
+    if (piece.piece.startsWith('king')) {
+        king(piece, states, turn, dot)
     }
 
 }
