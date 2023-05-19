@@ -33,11 +33,10 @@ export default function pawn(piece, states, turn, dot) {
     if (!piece.moved) {
         move2.element.innerHTML += dot
 
-        move2.binder = playMove.bind(null, piece, move2)
-        move2.element.addEventListener('click', move2.binder)
+
+        move2.element.addEventListener('click', playMove.bind(null, piece, move2))
     }
     move1.element.innerHTML += dot
 
-    move1.binder = playMove.bind(null, piece, move1)
-    move1.element.addEventListener('click', move1.binder)
+    move1.element.addEventListener('click', playMove.bind(null, piece, move1))
 }
