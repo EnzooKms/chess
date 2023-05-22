@@ -4,6 +4,9 @@ import pieces from "./pieces";
 board()
 
 window.game = new pieces()
+window.copy = new pieces()
+copy.createData()
+
 game.createData()
 game.drawData()
 // game.changeTurn()
