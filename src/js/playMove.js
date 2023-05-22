@@ -28,6 +28,8 @@ export default function playMove(state, newPos) {
 
     game.removeEvents()
 
+    copy.copyData(game.pieces)
+
     game.changeTurn()
 
     game.calcMove(game.pieces, game.turn)
