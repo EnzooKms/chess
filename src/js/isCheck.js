@@ -418,5 +418,6 @@ export default function isCheck(states, turn) {
 
     }
 
+    copy.copyData(game.pieces)
     return result
 }
