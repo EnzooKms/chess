@@ -61,6 +61,21 @@ export default class pieces {
 
     }
 
+    copyData(states) {
+        this.pieces = []
+
+        for (const state of states) {
+            const newInstance = {
+                element: state.element,
+                x: state.x,
+                y: state.y,
+                piece: state.piece
+            }
+
+            this.pieces.push(newInstance)
+        }
+    }
+
     drawData() {
 
         for (let i = 0; i < this.pieces.length; i++) {
