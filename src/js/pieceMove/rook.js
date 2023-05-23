@@ -4,6 +4,7 @@ import playMoveCopy from "../playMoveCopy"
 
 export default function rook(piece, states, turn, dot) {
     let x = 0, y = 0
+    let haveMove = false
 
     /* top */
 
@@ -14,6 +15,7 @@ export default function rook(piece, states, turn, dot) {
             playMoveCopy(piece, current)
 
             if (!isCheck(copy.pieces, game.turn)) {
+                haveMove = true
                 current.element.innerHTML += dot
                 current.element.addEventListener('click', playMove.bind(null, piece, current))
                 y = 0
@@ -28,7 +30,7 @@ export default function rook(piece, states, turn, dot) {
         playMoveCopy(piece, current)
 
         if (!isCheck(copy.pieces, game.turn)) {
-
+            haveMove = true
             current.element.innerHTML += dot
             current.element.addEventListener('click', playMove.bind(null, piece, current))
         }
@@ -51,6 +53,7 @@ export default function rook(piece, states, turn, dot) {
             playMoveCopy(piece, current)
 
             if (!isCheck(copy.pieces, game.turn)) {
+                haveMove = true
                 current.element.innerHTML += dot
                 current.element.addEventListener('click', playMove.bind(null, piece, current))
             }
@@ -65,6 +68,7 @@ export default function rook(piece, states, turn, dot) {
         playMoveCopy(piece, current)
 
         if (!isCheck(copy.pieces, game.turn)) {
+            haveMove = true
             current.element.innerHTML += dot
             current.element.addEventListener('click', playMove.bind(null, piece, current))
         }
@@ -86,6 +90,7 @@ export default function rook(piece, states, turn, dot) {
             playMoveCopy(piece, current)
 
             if (!isCheck(copy.pieces, game.turn)) {
+                haveMove = true
                 current.element.innerHTML += dot
                 current.element.addEventListener('click', playMove.bind(null, piece, current))
             }
@@ -100,6 +105,7 @@ export default function rook(piece, states, turn, dot) {
         playMoveCopy(piece, current)
 
         if (!isCheck(copy.pieces, game.turn)) {
+            haveMove = true
             current.element.innerHTML += dot
             current.element.addEventListener('click', playMove.bind(null, piece, current))
         }
@@ -121,6 +127,7 @@ export default function rook(piece, states, turn, dot) {
             playMoveCopy(piece, current)
 
             if (!isCheck(copy.pieces, game.turn)) {
+                haveMove = true
                 current.element.innerHTML += dot
                 current.element.addEventListener('click', playMove.bind(null, piece, current))
                 x = 0
@@ -135,6 +142,7 @@ export default function rook(piece, states, turn, dot) {
         playMoveCopy(piece, current)
 
         if (!isCheck(copy.pieces, game.turn)) {
+            haveMove = true
             current.element.innerHTML += dot
             current.element.addEventListener('click', playMove.bind(null, piece, current))
         }
@@ -147,4 +155,5 @@ export default function rook(piece, states, turn, dot) {
         }
     }
 
+    return haveMove
 }

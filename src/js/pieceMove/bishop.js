@@ -4,6 +4,7 @@ import playMoveCopy from "../playMoveCopy"
 
 export default function bishop(piece, states, turn, dot) {
     let x = 0, y = 0
+    let haveMove = false
 
     /* left up */
 
@@ -15,6 +16,7 @@ export default function bishop(piece, states, turn, dot) {
             playMoveCopy(piece, current)
 
             if (!isCheck(copy.pieces, game.turn)) {
+                haveMove = true
                 current.element.innerHTML += dot
                 current.element.addEventListener('click', playMove.bind(null, piece, current))
                 y = 0
@@ -31,6 +33,7 @@ export default function bishop(piece, states, turn, dot) {
         playMoveCopy(piece, current)
 
         if (!isCheck(copy.pieces, game.turn)) {
+            haveMove = true
             current.element.innerHTML += dot
             current.element.addEventListener('click', playMove.bind(null, piece, current))
         }
@@ -54,6 +57,7 @@ export default function bishop(piece, states, turn, dot) {
             playMoveCopy(piece, current)
 
             if (!isCheck(copy.pieces, game.turn)) {
+                haveMove = true
                 current.element.innerHTML += dot
                 current.element.addEventListener('click', playMove.bind(null, piece, current))
                 y = 0
@@ -70,6 +74,7 @@ export default function bishop(piece, states, turn, dot) {
         playMoveCopy(piece, current)
 
         if (!isCheck(copy.pieces, game.turn)) {
+            haveMove = true
             current.element.innerHTML += dot
             current.element.addEventListener('click', playMove.bind(null, piece, current))
         }
@@ -93,6 +98,7 @@ export default function bishop(piece, states, turn, dot) {
             playMoveCopy(piece, current)
 
             if (!isCheck(copy.pieces, game.turn)) {
+                haveMove = true
                 current.element.innerHTML += dot
                 current.element.addEventListener('click', playMove.bind(null, piece, current))
                 y = 0
@@ -109,6 +115,7 @@ export default function bishop(piece, states, turn, dot) {
         playMoveCopy(piece, current)
 
         if (!isCheck(copy.pieces, game.turn)) {
+            haveMove = true
             current.element.innerHTML += dot
             current.element.addEventListener('click', playMove.bind(null, piece, current))
         }
@@ -132,6 +139,7 @@ export default function bishop(piece, states, turn, dot) {
             playMoveCopy(piece, current)
 
             if (!isCheck(copy.pieces, game.turn)) {
+                haveMove = true
                 current.element.innerHTML += dot
                 current.element.addEventListener('click', playMove.bind(null, piece, current))
                 y = 0
@@ -149,6 +157,7 @@ export default function bishop(piece, states, turn, dot) {
         playMoveCopy(piece, current)
 
         if (!isCheck(copy.pieces, game.turn)) {
+            haveMove = true
             current.element.innerHTML += dot
             current.element.addEventListener('click', playMove.bind(null, piece, current))
         }
@@ -162,4 +171,5 @@ export default function bishop(piece, states, turn, dot) {
         }
     }
 
+    return haveMove
 }

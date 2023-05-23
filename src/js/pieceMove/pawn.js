@@ -4,6 +4,7 @@ import playMoveCopy from "../playMoveCopy"
 
 export default function pawn(piece, states, turn, dot) {
 
+    let haveMove = false
     const add = turn === 'white' ? 1 : - 1
     const add2 = turn === 'white' ? 2 : - 2
 
@@ -18,6 +19,7 @@ export default function pawn(piece, states, turn, dot) {
         playMoveCopy(piece, leftUp)
 
         if (!isCheck(copy.pieces, game.turn)) {
+            haveMove = true
 
             leftUp.element.innerHTML += dot
             leftUp.element.addEventListener('click', playMove.bind(null, piece, leftUp))
@@ -29,6 +31,8 @@ export default function pawn(piece, states, turn, dot) {
         playMoveCopy(piece, rightUp)
 
         if (!isCheck(copy.pieces, game.turn)) {
+            haveMove = true
+
             rightUp.element.innerHTML += dot
             rightUp.element.addEventListener('click', playMove.bind(null, piece, rightUp))
         }
@@ -40,14 +44,17 @@ export default function pawn(piece, states, turn, dot) {
     const move2 = states.find(el => el.x === piece.x && el.y === piece.y - add2)
 
     if (move1.piece) {
-        return
+        return haveMove
     }
 
     if (!piece.moved && !move2.piece) {
 
-        playMoveCopy(piece, leftUp)
+        playMoveCopy(piece, move2)
 
         if (!isCheck(copy.pieces, game.turn)) {
+
+            haveMove = true
+
             move2.element.innerHTML += dot
 
 
@@ -55,11 +62,16 @@ export default function pawn(piece, states, turn, dot) {
         }
     }
 
-    playMoveCopy(piece, leftUp)
+    playMoveCopy(piece, move1)
 
     if (!isCheck(copy.pieces, game.turn)) {
+
+        haveMove = true
+
         move1.element.innerHTML += dot
 
         move1.element.addEventListener('click', playMove.bind(null, piece, move1))
     }
+
+    return haveMove
 }

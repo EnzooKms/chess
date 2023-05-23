@@ -4,6 +4,8 @@ import playMoveCopy from "../playMoveCopy"
 
 export default function knight(piece, states, turn, dot) {
 
+    let haveMove = false
+
     const topLeft = states.find(el => el.x === piece.x - 1 && el.y === piece.y - 2)
     const topRight = states.find(el => el.x === piece.x + 1 && el.y === piece.y - 2)
 
@@ -25,7 +27,7 @@ export default function knight(piece, states, turn, dot) {
             playMoveCopy(piece, move)
 
             if (!isCheck(copy.pieces, game.turn)) {
-
+                haveMove = true
                 move.element.innerHTML += dot
                 move.element.addEventListener('click', playMove.bind(null, piece, move))
             }
@@ -35,6 +37,7 @@ export default function knight(piece, states, turn, dot) {
             playMoveCopy(piece, move)
 
             if (!isCheck(copy.pieces, game.turn)) {
+                haveMove = true
                 move.element.innerHTML += dot
                 move.element.addEventListener('click', playMove.bind(null, piece, move))
             }
@@ -42,4 +45,5 @@ export default function knight(piece, states, turn, dot) {
 
     }
 
+    return haveMove
 }
