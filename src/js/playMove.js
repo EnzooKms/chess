@@ -1,4 +1,5 @@
 import isCheck from "./isCheck"
+import isCheckMate from "./isCheckMate"
 
 export default function playMove(state, newPos) {
 
@@ -33,6 +34,10 @@ export default function playMove(state, newPos) {
     copy.copyData(game.pieces)
 
     game.changeTurn()
+
+    if (isCheck(game.pieces, game.turn)) {
+        isCheckMate(game.pieces, game.turn)
+    }
 
     game.calcMove(game.pieces, game.turn)
 }

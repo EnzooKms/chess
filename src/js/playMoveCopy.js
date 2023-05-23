@@ -1,5 +1,7 @@
 export default function playMoveCopy(gameState, gameNewPos) {
 
+    copy.copyData(game.pieces)
+
     const state = copy.pieces.find(el => el.piece === gameState.piece && el.x === gameState.x && el.y === gameState.y)
     const newPos = copy.pieces.find(el => el.x === gameNewPos.x && el.y === gameNewPos.y)
 
