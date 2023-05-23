@@ -46,7 +46,7 @@ export default function isCheck(states, turn) {
         y++
     }
 
-    /* verify if any down piece put the king at check */
+    /* verify if any bottom piece put the king at check */
     y = 0
     x = 0
     finder = king
@@ -79,7 +79,8 @@ export default function isCheck(states, turn) {
                 break
             }
             else /* king */ {
-                if (king.y - current.y === 1) {
+                if (king.y - current.y === -1) {
+                    console.log(king, current);
                     result = true
                     break
                 }
@@ -123,7 +124,7 @@ export default function isCheck(states, turn) {
                 break
             }
             else /* king */ {
-                if (king.y - current.y === 1) {
+                if (king.x - current.x === 1) {
                     result = true
                     break
                 }
@@ -168,7 +169,7 @@ export default function isCheck(states, turn) {
                 break
             }
             else /* king */ {
-                if (king.y - current.y === 1) {
+                if (king.x - current.x === -1) {
                     result = true
                     break
                 }
@@ -205,7 +206,6 @@ export default function isCheck(states, turn) {
                 break
             }
             else if (current.piece.startsWith('rook')) {
-                result = true
                 break
             }
             else if (current.piece.startsWith('queen')) {
@@ -213,7 +213,7 @@ export default function isCheck(states, turn) {
                 break
             }
             else /* king */ {
-                if (king.y - current.y === 1) {
+                if (king.y - current.y === 1 && king.x - current.x === 1) {
                     result = true
                     break
                 }
@@ -251,7 +251,6 @@ export default function isCheck(states, turn) {
                 break
             }
             else if (current.piece.startsWith('rook')) {
-                result = true
                 break
             }
             else if (current.piece.startsWith('queen')) {
@@ -259,7 +258,7 @@ export default function isCheck(states, turn) {
                 break
             }
             else /* king */ {
-                if (king.y - current.y === 1) {
+                if (king.y - current.y === 1 && king.x - current.x === -1) {
                     result = true
                     break
                 }
@@ -305,7 +304,7 @@ export default function isCheck(states, turn) {
                 break
             }
             else /* king */ {
-                if (king.y - current.y === 1) {
+                if (king.y - current.y === -1 && king.x - current.x === 1) {
                     result = true
                     break
                 }
@@ -326,9 +325,11 @@ export default function isCheck(states, turn) {
         const current = states.find(el => el.x === king.x + (x + 1) && el.y === king.y + (y + 1))
         finder = current
 
+
         if (!current) break
 
         if (current.piece) {
+            console.log(king, current);
 
             if (current.piece.endsWith(turn)) break
 
@@ -351,7 +352,7 @@ export default function isCheck(states, turn) {
                 break
             }
             else /* king */ {
-                if (king.y - current.y === 1) {
+                if (king.y - current.y === -1 && king.x - current.x === -1) {
                     result = true
                     break
                 }
@@ -417,6 +418,7 @@ export default function isCheck(states, turn) {
         }
 
     }
+
 
     copy.copyData(game.pieces)
     return result
