@@ -1,8 +1,7 @@
 export default function playMoveCopy(gameState, gameNewPos) {
 
-    const state = copy.pieces.find(el => el.piece === gameState.piece)
+    const state = copy.pieces.find(el => el.piece === gameState.piece && el.x === gameState.x && el.y === gameState.y)
     const newPos = copy.pieces.find(el => el.x === gameNewPos.x && el.y === gameNewPos.y)
-    // console.log(state);
 
     const promote = game.turn === 'white' ? 1 : 6
 

@@ -1,3 +1,5 @@
+import isCheck from "./isCheck"
+
 export default function playMove(state, newPos) {
 
     const promote = game.turn === 'white' ? 1 : 6
