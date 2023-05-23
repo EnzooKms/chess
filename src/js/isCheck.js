@@ -80,7 +80,6 @@ export default function isCheck(states, turn) {
             }
             else /* king */ {
                 if (king.y - current.y === -1) {
-                    console.log(king, current);
                     result = true
                     break
                 }
@@ -329,7 +328,6 @@ export default function isCheck(states, turn) {
         if (!current) break
 
         if (current.piece) {
-            console.log(king, current);
 
             if (current.piece.endsWith(turn)) break
 
@@ -420,6 +418,5 @@ export default function isCheck(states, turn) {
     }
 
 
-    copy.copyData(game.pieces)
     return result
 }
