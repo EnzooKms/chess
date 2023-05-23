@@ -1,4 +1,6 @@
+import isCheck from "../isCheck"
 import playMove from "../playMove"
+import playMoveCopy from "../playMoveCopy"
 
 export default function knight(piece, states, turn, dot) {
 
@@ -19,12 +21,23 @@ export default function knight(piece, states, turn, dot) {
     for (const move of moves) {
 
         if (move && move.piece && !move.piece.endsWith(turn)) {
-            move.element.innerHTML += dot
-            move.element.addEventListener('click', playMove.bind(null, piece, move))
+
+            playMoveCopy(piece, move)
+
+            if (!isCheck(copy.pieces, game.turn)) {
+
+                move.element.innerHTML += dot
+                move.element.addEventListener('click', playMove.bind(null, piece, move))
+            }
         }
         if (move && !move.piece) {
-            move.element.innerHTML += dot
-            move.element.addEventListener('click', playMove.bind(null, piece, move))
+
+            playMoveCopy(piece, move)
+
+            if (!isCheck(copy.pieces, game.turn)) {
+                move.element.innerHTML += dot
+                move.element.addEventListener('click', playMove.bind(null, piece, move))
+            }
         }
 
     }
