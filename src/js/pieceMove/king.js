@@ -19,12 +19,12 @@ export default function king(piece, states, turn, dot) {
 
         if (move && !move.piece) {
             playMoveCopy(piece, move)
-            console.log(isCheck(copy.pieces, game.turn), move)
 
             if (!isCheck(copy.pieces, game.turn)) {
                 move.element.addEventListener('click', playMove.bind(null, piece, move))
                 move.element.innerHTML += dot
             }
+
         }
         if (move && move.piece && !move.piece.endsWith(turn)) {
             playMoveCopy(piece, move)
