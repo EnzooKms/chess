@@ -1,7 +1,9 @@
-import isCheck from "./isCheck"
-import isCheckMate from "./isCheckMate"
+export default function playMoveCopy(gameState, gameNewPos) {
 
-export default function playMove(state, newPos) {
+    copy.copyData(game.pieces)
+
+    const state = copy.pieces.find(el => el.piece === gameState.piece && el.x === gameState.x && el.y === gameState.y)
+    const newPos = copy.pieces.find(el => el.x === gameNewPos.x && el.y === gameNewPos.y)
 
     const promote = game.turn === 'white' ? 1 : 6
 
@@ -26,22 +28,4 @@ export default function playMove(state, newPos) {
     newPos.element = oldState.element
     newPos.piece = null
 
-    game.drawData()
-    game.clearDot()
-
-    game.removeEvents()
-
-    copy.copyData(game.pieces)
-
-    game.changeTurn()
-
-    setTimeout(() => {
-        if (isCheck(game.pieces, game.turn)) {
-            isCheckMate(game.pieces, game.turn)
-            game.removeEvents()
-            game.clearDot()
-        }
-
-        game.calcMove(game.pieces, game.turn)
-    }, 500);
 }
