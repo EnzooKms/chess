@@ -1,5 +1,5 @@
-export default function isCheck(states, turn) {
-    const king = states.find(el => el.piece && el.piece.startsWith(`king_${turn}`))
+export default function isCheck(states, turn, king) {
+    if (!king) king = states.find(el => el.piece && el.piece.startsWith(`king_${turn}`))
     const noTurn = turn === 'white' ? 'black' : 'white'
     let result = false
     let x = 0, y = 0
