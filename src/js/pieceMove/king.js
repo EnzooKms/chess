@@ -67,6 +67,7 @@ export default function king(piece, states, turn, dot) {
                 KingMove.element.addEventListener('click', () => {
                     playMove(piece, KingMove)
                     playMove(current, rookMove)
+                    game.changeTurn()
                 })
                 KingMove.element.innerHTML += dot
             }
@@ -95,6 +96,7 @@ export default function king(piece, states, turn, dot) {
                 KingMove.element.addEventListener('click', () => {
                     playMove(piece, KingMove)
                     playMove(current, rookMove)
+                    game.changeTurn()
                 })
                 KingMove.element.innerHTML += dot
             }
