@@ -35,11 +35,13 @@ export default function playMove(state, newPos) {
 
     game.changeTurn()
 
-    if (isCheck(game.pieces, game.turn)) {
-        isCheckMate(game.pieces, game.turn)
-        game.removeEvents()
-        game.clearDot()
-    }
+    setTimeout(() => {
+        if (isCheck(game.pieces, game.turn)) {
+            isCheckMate(game.pieces, game.turn)
+            game.removeEvents()
+            game.clearDot()
+        }
 
-    game.calcMove(game.pieces, game.turn)
+        game.calcMove(game.pieces, game.turn)
+    }, 500);
 }
