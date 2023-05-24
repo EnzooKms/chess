@@ -37,6 +37,8 @@ export default function playMove(state, newPos) {
 
     if (isCheck(game.pieces, game.turn)) {
         isCheckMate(game.pieces, game.turn)
+        game.removeEvents()
+        game.clearDot()
     }
 
     game.calcMove(game.pieces, game.turn)
