@@ -40,5 +40,69 @@ export default function king(piece, states, turn, dot) {
 
     }
 
+    /* castle move */
+
+    if (!piece.moved) {
+
+        let x = 0
+
+        /* petit castle */
+
+        while (states.find(el => el.x === piece.x + (x + 1) && el.y === piece.y)) {
+            const current = states.find(el => el.x === piece.x + (x + 1) && el.y === piece.y)
+
+            if (isCheck(states, turn, current)) {
+                break
+            }
+
+            if (current.piece && !current.piece.startsWith('rook')) {
+                break
+            }
+
+            /* current = rook */
+            else if (current.piece && !current.moved) {
+                const KingMove = states.find(el => el.y === current.y && el.x === current.x - 1)
+                const rookMove = states.find(el => el.y === current.y && el.x === current.x - 2)
+
+                KingMove.element.addEventListener('click', () => {
+                    playMove(piece, KingMove)
+                    playMove(current, rookMove)
+                })
+                KingMove.element.innerHTML += dot
+            }
+
+            x++
+        }
+
+        /* grand castle */
+
+        while (states.find(el => el.x === piece.x - (x + 1) && el.y === piece.y)) {
+            const current = states.find(el => el.x === piece.x - (x + 1) && el.y === piece.y)
+
+            if (isCheck(states, turn, current)) {
+                break
+            }
+
+            if (current.piece && !current.piece.startsWith('rook')) {
+                break
+            }
+
+            /* current = rook */
+            else if (current.piece && !current.moved) {
+                const KingMove = states.find(el => el.y === current.y && el.x === current.x + 2)
+                const rookMove = states.find(el => el.y === current.y && el.x === current.x + 3)
+
+                KingMove.element.addEventListener('click', () => {
+                    playMove(piece, KingMove)
+                    playMove(current, rookMove)
+                })
+                KingMove.element.innerHTML += dot
+            }
+
+            x++
+        }
+
+    }
+
     return haveMove
 }

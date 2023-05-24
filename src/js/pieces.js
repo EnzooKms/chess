@@ -16,7 +16,7 @@ export default class pieces {
             for (let x = 0; x < 8; x++) {
 
 
-                this.pieces.push({ element: cells[i], x, y, piece: null })
+                this.pieces.push({ element: cells[i], x, y, piece: null, moved: false })
                 i++
 
             }
@@ -43,10 +43,8 @@ export default class pieces {
 
         for (let pawn = 1; pawn <= 8; pawn++) {
             this.pieces[pawn + 7].piece = 'pawn_black'
-            this.pieces[pawn + 7].moved = false
 
             this.pieces[56 - pawn].piece = 'pawn_white'
-            this.pieces[56 - pawn].moved = false
         }
 
     }
