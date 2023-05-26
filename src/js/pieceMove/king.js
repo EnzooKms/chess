@@ -65,9 +65,8 @@ export default function king(piece, states, turn, dot) {
                 const rookMove = states.find(el => el.y === current.y && el.x === current.x - 2)
 
                 KingMove.element.addEventListener('click', () => {
-                    playMove(piece, KingMove)
-                    playMove(current, rookMove)
-                    game.changeTurn()
+                    playMove(piece, KingMove, true)
+                    playMove(current, rookMove, false)
                 })
                 KingMove.element.innerHTML += dot
             }
@@ -77,8 +76,11 @@ export default function king(piece, states, turn, dot) {
 
         /* grand castle */
 
+        x = 0
+
         while (states.find(el => el.x === piece.x - (x + 1) && el.y === piece.y)) {
             const current = states.find(el => el.x === piece.x - (x + 1) && el.y === piece.y)
+            console.log(current);
 
             if (isCheck(states, turn, current)) {
                 break
@@ -94,9 +96,8 @@ export default function king(piece, states, turn, dot) {
                 const rookMove = states.find(el => el.y === current.y && el.x === current.x + 3)
 
                 KingMove.element.addEventListener('click', () => {
-                    playMove(piece, KingMove)
-                    playMove(current, rookMove)
-                    game.changeTurn()
+                    playMove(piece, KingMove, true)
+                    playMove(current, rookMove, false)
                 })
                 KingMove.element.innerHTML += dot
             }

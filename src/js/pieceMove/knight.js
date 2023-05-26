@@ -29,7 +29,7 @@ export default function knight(piece, states, turn, dot) {
             if (!isCheck(copy.pieces, game.turn)) {
                 haveMove = true
                 move.element.innerHTML += dot
-                move.element.addEventListener('click', playMove.bind(null, piece, move))
+                move.element.addEventListener('click', playMove.bind(null, piece, move, false))
             }
         }
         if (move && !move.piece) {
@@ -39,7 +39,7 @@ export default function knight(piece, states, turn, dot) {
             if (!isCheck(copy.pieces, game.turn)) {
                 haveMove = true
                 move.element.innerHTML += dot
-                move.element.addEventListener('click', playMove.bind(null, piece, move))
+                move.element.addEventListener('click', playMove.bind(null, piece, move, false))
             }
         }
 

@@ -22,7 +22,7 @@ export default function pawn(piece, states, turn, dot) {
             haveMove = true
 
             leftUp.element.innerHTML += dot
-            leftUp.element.addEventListener('click', playMove.bind(null, piece, leftUp))
+            leftUp.element.addEventListener('click', playMove.bind(null, piece, leftUp, false))
         }
     }
 
@@ -34,7 +34,7 @@ export default function pawn(piece, states, turn, dot) {
             haveMove = true
 
             rightUp.element.innerHTML += dot
-            rightUp.element.addEventListener('click', playMove.bind(null, piece, rightUp))
+            rightUp.element.addEventListener('click', playMove.bind(null, piece, rightUp, false))
         }
     }
 
@@ -58,7 +58,7 @@ export default function pawn(piece, states, turn, dot) {
             move2.element.innerHTML += dot
 
 
-            move2.element.addEventListener('click', playMove.bind(null, piece, move2))
+            move2.element.addEventListener('click', playMove.bind(null, piece, move2, false))
         }
     }
 
@@ -70,7 +70,7 @@ export default function pawn(piece, states, turn, dot) {
 
         move1.element.innerHTML += dot
 
-        move1.element.addEventListener('click', playMove.bind(null, piece, move1))
+        move1.element.addEventListener('click', playMove.bind(null, piece, move1, false))
     }
 
     return haveMove
