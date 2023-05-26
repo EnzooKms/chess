@@ -1,6 +1,6 @@
 import { stateChange } from "../socket/socket.js"
 
-export default function playMove(state, newPos) {
+export default function playMove(state, newPos, notDoSocket) {
 
     const promote = game.turn === 'white' ? 1 : 6
 
@@ -31,6 +31,9 @@ export default function playMove(state, newPos) {
     game.removeEvents()
 
     copy.copyData(game.pieces)
+
+    console.log(notDoSocket);
+    if (notDoSocket) return
 
     stateChange(game.pieces)
 }
