@@ -6,10 +6,10 @@ export default function board() {
     for (let y = 0; y < 8; y++) {
 
         for (let x = 0; x < 8; x++) {
-
-
-            if ((x + y) % 2 === 0) cells[i].style.backgroundColor = 'rgba(255, 255, 255, 0.85)'
-            else cells[i].style.backgroundColor = 'black'
+            if (cells[i]) {
+                if ((x + y) % 2 === 0) cells[i].style.backgroundColor = 'rgba(255, 255, 255, 0.85)'
+                else cells[i].style.backgroundColor = 'black'
+            }
 
             i++
 
