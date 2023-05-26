@@ -1,9 +1,9 @@
-import pawn from "./pawn";
-import king from "./king";
-import queen from "./queen";
-import rook from "./rook";
-import bishop from "./bishop";
-import knight from "./knight";
+import pawn from "./pawn.js";
+import king from "./king.js";
+import queen from "./queen.js";
+import rook from "./rook.js";
+import bishop from "./bishop.js";
+import knight from "./knight.js";
 
 export {
     pawn,

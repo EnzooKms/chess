@@ -1,11 +1,13 @@
-import eventFunc from "./move"
+import eventFunc from "./move.js"
 
 const cells = document.getElementById('game').querySelectorAll('.cells')
+const gameEl = document.getElementById('game')
 
 export default class pieces {
-    constructor() {
+    constructor(player) {
         this.turn = 'white'
         this.pieces = []
+        this.player = player
     }
 
     createData() {
@@ -22,7 +24,6 @@ export default class pieces {
             }
 
         }
-
         this.pieces[0].piece = 'rook_black'
         this.pieces[1].piece = 'knight_black'
         this.pieces[2].piece = 'bishop_black'
@@ -76,6 +77,16 @@ export default class pieces {
 
     drawData() {
 
+        if (this.player === 'white') {
+            // gameEl.classList.remove('black')
+        }
+        else if (this.player === 'black') {
+            gameEl.classList.add('black')
+        }
+        else {
+            throw new Error('This.player need to be "white" || "black"')
+        }
+
         for (let i = 0; i < this.pieces.length; i++) {
             const el = this.pieces[i]
             if (!el.piece) {
@@ -83,7 +94,14 @@ export default class pieces {
                 continue
             }
 
-            el.element.children[0].style.backgroundImage = `url(/theme/default/${el.piece}.png)`
+            if (this.player === 'white') {
+                //  el.element.classList.remove('black')
+            }
+            else if (this.player === 'black') {
+                el.element.classList.add('black')
+            }
+
+            el.element.children[0].style.backgroundImage = `url(/public/theme/default/${el.piece}.png)`
 
         }
 
@@ -114,8 +132,9 @@ export default class pieces {
 
     calcMove(states, turn) {
 
-        const piecesPlayer = states.filter(el => el.piece /*if el.piece is null will return false */ && el.piece.endsWith(turn))
+        if (turn !== this.player) return
 
+        const piecesPlayer = states.filter(el => el.piece /*if el.piece is null will return false */ && el.piece.endsWith(turn))
         for (const piece of piecesPlayer) {
             piece.element.addEventListener('click', eventFunc.bind(null, piece.element, piece, states, turn)) /* click by current player */
         }

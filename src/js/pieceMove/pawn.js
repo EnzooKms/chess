@@ -1,6 +1,6 @@
-import isCheck from "../isCheck"
-import playMove from "../playMove"
-import playMoveCopy from "../playMoveCopy"
+import isCheck from "../isCheck.js"
+import playMove from "../playMove.js"
+import playMoveCopy from "../playMoveCopy.js"
 
 export default function pawn(piece, states, turn, dot) {
 

@@ -1,15 +1,15 @@
-import board from "./board";
-import pieces from "./pieces";
+import board from "./board.js";
+import pieces from "./pieces.js";
 
-board()
+export default function load(player) {
+    board()
 
-window.game = new pieces()
-window.copy = new pieces()
-copy.createData()
+    window.game = new pieces(player)
+    window.copy = new pieces(player)
+    copy.createData()
 
-game.createData()
-game.drawData()
-// game.changeTurn()
-game.calcMove(game.pieces, game.turn)
-
-console.log(game);
+    game.createData()
+    game.drawData()
+    // game.changeTurn()
+    game.calcMove(game.pieces, game.turn)
+}

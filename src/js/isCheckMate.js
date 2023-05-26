@@ -1,4 +1,4 @@
-import { pawn, king, queen, rook, bishop, knight } from "./pieceMove/import"
+import { pawn, king, queen, rook, bishop, knight } from "./pieceMove/import.js"
 
 export default function isCheckMate(states, turn) {
 

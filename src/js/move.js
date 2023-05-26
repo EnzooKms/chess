@@ -1,9 +1,7 @@
-import { pawn, king, queen, rook, bishop, knight } from "./pieceMove/import"
+import { pawn, king, queen, rook, bishop, knight } from "./pieceMove/import.js"
 
 export default function eventFunc(e, piece, states, turn) {
 
-    game.removeEvents()
-    game.calcMove(game.pieces, game.turn)
     game.clearDot()
     const dot = '<div class="dot"></div>'
 

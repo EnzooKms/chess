@@ -1,5 +1,4 @@
-import isCheck from "./isCheck"
-import isCheckMate from "./isCheckMate"
+import { stateChange } from "../socket/socket.js"
 
 export default function playMove(state, newPos) {
 
@@ -33,15 +32,5 @@ export default function playMove(state, newPos) {
 
     copy.copyData(game.pieces)
 
-    game.changeTurn()
-
-    setTimeout(() => {
-        if (isCheck(game.pieces, game.turn)) {
-            isCheckMate(game.pieces, game.turn)
-            game.removeEvents()
-            game.clearDot()
-        }
-
-        game.calcMove(game.pieces, game.turn)
-    }, 500);
+    stateChange(game.pieces)
 }
