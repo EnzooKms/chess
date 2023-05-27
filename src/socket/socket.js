@@ -10,13 +10,15 @@ socket.emit('play', () => {
 })
 
 socket.on('play', (player) => {
+    console.log(player);
     if (player) {
         if (loaded) return
         loaded = true
         load(player)
     }
-
-    load('local')
+    else {
+        load('local')
+    }
 })
 
 export function stateChange(states) {
