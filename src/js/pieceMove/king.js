@@ -24,7 +24,7 @@ export default function king(piece, states, turn, dot) {
 
             if (!isCheck(copy.pieces, game.turn)) {
                 haveMove = true
-                move.element.addEventListener('click', playMove.bind(null, piece, move))
+                move.element.addEventListener('click', playMove.bind(null, piece, move, false))
                 move.element.innerHTML += dot
             }
 
@@ -33,7 +33,7 @@ export default function king(piece, states, turn, dot) {
             playMoveCopy(piece, move)
             if (!isCheck(copy.pieces, game.turn)) {
                 haveMove = true
-                move.element.addEventListener('click', playMove.bind(null, piece, move))
+                move.element.addEventListener('click', playMove.bind(null, piece, move, false))
                 move.element.innerHTML += dot
             }
         }
@@ -80,7 +80,6 @@ export default function king(piece, states, turn, dot) {
 
         while (states.find(el => el.x === piece.x - (x + 1) && el.y === piece.y)) {
             const current = states.find(el => el.x === piece.x - (x + 1) && el.y === piece.y)
-            console.log(current);
 
             if (isCheck(states, turn, current)) {
                 break
