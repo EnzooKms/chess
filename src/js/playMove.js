@@ -1,4 +1,6 @@
 import { stateChange } from "../socket/socket.js"
+import isCheck from "./isCheck.js"
+import isCheckMate from "./isCheckMate.js"
 
 export default function playMove(state, newPos, notDoSocket) {
 
@@ -32,7 +34,22 @@ export default function playMove(state, newPos, notDoSocket) {
 
     copy.copyData(game.pieces)
 
-    console.log(notDoSocket);
+    if (game.player === 'local') {
+        game.changeTurn()
+        game.drawData()
+
+        setTimeout(() => {
+            if (isCheck(game.pieces, game.turn)) {
+                isCheckMate(game.pieces, game.turn)
+                game.removeEvents()
+                game.clearDot()
+            }
+
+            game.calcMove(game.pieces, game.turn)
+        }, 500);
+        return
+    }
+
     if (notDoSocket) return
 
     stateChange(game.pieces)
