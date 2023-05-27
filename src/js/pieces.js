@@ -83,6 +83,7 @@ export default class pieces {
         else if (this.player === 'black') {
             gameEl.classList.add('black')
         }
+        else if (this.player === 'local') { }
         else {
             throw new Error('This.player need to be "white" || "black"')
         }
@@ -132,7 +133,7 @@ export default class pieces {
 
     calcMove(states, turn) {
 
-        if (turn !== this.player) return
+        if (turn !== this.player && !this.player === 'local') return
 
         const piecesPlayer = states.filter(el => el.piece /*if el.piece is null will return false */ && el.piece.endsWith(turn))
         for (const piece of piecesPlayer) {
