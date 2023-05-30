@@ -35,10 +35,6 @@ app.get('/game', (req, res) => {
     mySocket.setPlayer(player)
 })
 
-app.get('/sign', (req, res) => {
-    res.sendFile(`${__dirname}/src/html/sign.html`)
-})
-
 app.use(express.static(process.cwd()))
 
 mySocket.socket()

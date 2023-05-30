@@ -5,8 +5,43 @@ const router = Router()
 const { v4: uuidv4 } = require('uuid');
 require('dotenv').config()
 
+router.get('/login', (req, res) => {
+    res.sendFile(`${__dirname}/src/html/login.html`)
+})
 
-router.post('/users', async (req, res) => {
+router.post('/login', async (req, res) => {
+    const { username, password } = req.body
+    const db = new sqlite3.Database('./db.sqlite3')
+
+    db.serialize(() => {
+        db.get(`SELECT * FROM users WHERE username=${username}`, async (err, data) => {
+            if (err) {
+                req.session.err = `L'utilisateur ${username}`
+                return res.redirect('login')
+            }
+
+            if (data.username && data.password) {
+                const compare = await bcrypt.compare(password, data.password)
+                if (compare) {
+                    req.session.isConnected = true
+                    req.session.user = username
+                    res.status(200).redirect('/')
+                } else {
+                    return res.status(401).send({
+                        code: 401,
+                        err: `the password it wrong`
+                    })
+                }
+            }
+        })
+    })
+})
+
+router.get('/sign', (req, res) => {
+    res.sendFile(`${__dirname}/src/html/sign.html`)
+})
+
+router.post('/sign', async (req, res) => {
     const db = new sqlite3.Database('./db.sqlite3');
     const { username, password } = req.body
     const gen = await bcrypt.genSalt()
